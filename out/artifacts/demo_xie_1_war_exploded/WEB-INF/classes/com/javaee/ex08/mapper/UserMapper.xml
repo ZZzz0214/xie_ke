@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaee.ex08.mapper.UserMapper">
+    <select id="findUserById"  parameterType="int" resultType="User">
+        select * from user where user_id=#{id} ;
+    </select>
+    <select id="findUserAll"  resultType="com.javaee.ex08.po.User">
+        select * from user;
+    </select>
+    <insert id="userSignUp" parameterType="com.javaee.ex08.po.User">
+     insert into user(login_name,password,user_name,mobile) values (#{loginName},#{password},#{userName},#{mobile});
+    </insert>
+</mapper>
