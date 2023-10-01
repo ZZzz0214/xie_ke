@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd
     http://www.springframework.org/schema/aop
     https://www.springframework.org/schema/aop/spring-aop.xsd">
-    <context:component-scan base-package="com.javaee.ex08.service"/>
+    <context:component-scan base-package="com.javaee.demo.service"/>
     <context:property-placeholder location="classpath:config/db.properties"/>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="${mysql.driver}"/>
@@ -28,7 +28,7 @@
     <aop:aspectj-autoproxy/>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.javaee.ex08.po"/>
+        <property name="typeAliasesPackage" value="com.javaee.demo.po"/>
         <property name="configuration">
             <bean class="org.apache.ibatis.session.Configuration">
                 <property name="mapUnderscoreToCamelCase" value="true"/>
@@ -37,6 +37,6 @@
         <!--<property name="configLocation" value="classpath:config/mybatis-config.xml"/>-->
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.javaee.ex08.mapper"/>
+        <property name="basePackage" value="com.javaee.demo.mapper"/>
     </bean>
 </beans>
