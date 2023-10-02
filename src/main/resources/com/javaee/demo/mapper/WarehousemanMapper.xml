@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaee.demo.mapper.WarehousemanMapper">
+
+<!--    查询Warehouseman-->
+    <select id="findWarehouseman" parameterType="com.javaee.demo.po.Warehouseman" resultType="com.javaee.demo.po.Warehouseman">
+        SELECT *
+        FROM s_warehouseman
+        WHERE
+        <if test="wUsername != null and wUsername != ''">
+            w_username = #{wUsername}
+        </if>
+        <if test="wPassword != null and wPassword != ''">
+            AND w_password = #{wPassword}
+        </if>
+    </select>
+    <!-- 插入Warehouseman -->
+    <insert id="addWarehouseman" parameterType="com.javaee.demo.po.Warehouseman">
+        INSERT INTO s_warehouseman (w_name, w_username, w_password, w_describe)
+        VALUES (#{wName}, #{wUsername}, #{wPassword}, #{wDescribe})
+    </insert>
+
+    <!-- 更新Warehouseman -->
+    <update id="updateWarehouseman" parameterType="com.javaee.demo.po.Warehouseman">
+        UPDATE s_warehouseman
+        SET w_name = #{wName}, w_username = #{wUsername}, w_password = #{wPassword}, w_describe = #{wDescribe}
+        WHERE w_id = #{wId}
+    </update>
+
+    <!-- 删除Warehouseman -->
+    <delete id="deleteWarehousemanById" parameterType="int">
+        DELETE FROM s_warehouseman WHERE w_id = #{wId}
+    </delete>
+
+    <!-- 根据ID查询Warehouseman -->
+    <select id="findWarehousemanById" parameterType="int" resultType="com.javaee.demo.po.Warehouseman">
+        SELECT * FROM s_warehouseman WHERE w_id = #{wId}
+    </select>
+
+    <!-- 查询所有Warehouseman -->
+    <select id="getAllWarehouseman" resultType="com.javaee.demo.po.Warehouseman">
+        SELECT * FROM s_warehouseman
+    </select>
+
+    <!-- 查询Warehouseman总数 -->
+    <select id="totalCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM s_warehouseman
+        WHERE
+        <if test="wName != null and wName != ''">
+            AND w_name LIKE CONCAT('%', #{wName}, '%')
+        </if>
+        <if test="wUsername != null and wUsername != ''">
+            AND w_username LIKE CONCAT('%', #{wUsername}, '%')
+        </if>
+        <if test="wId != null">
+            AND w_id = #{wId}
+        </if>
+    </select>
+
+    <!-- 分页查询Warehouseman -->
+    <select id="getWarehousemanList" parameterType="map" resultType="com.javaee.demo.po.Warehouseman">
+        SELECT *
+        FROM s_warehouseman
+        WHERE
+        <if test="wName != null and wName != ''">
+            w_name LIKE CONCAT('%', #{wName}, '%')
+        </if>
+        <if test="wUsername != null and wUsername != ''">
+            AND w_username LIKE CONCAT('%', #{wUsername}, '%')
+        </if>
+        <if test="wId != null">
+            AND w_id = #{wId}
+        </if>
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+</mapper>

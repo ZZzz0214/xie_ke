@@ -22,5 +22,20 @@
     <a href="${theContext}/User/sign_in">注册</a>
 </form>
 <a href="${theContext}/">首页</a>
+
+<form action="${theContext}/Auditor/login">
+    <input name="aaUsername" id="userId2">
+    <input name="aaPassword" id="password2" type="password">
+    <input type="submit" value="提交">
+    <a href="${theContext}/User/sign_in">注册</a>
+</form>
+<a href="${theContext}/">首页</a>
+<form action="${theContext}/Warehouseman/login">
+    <input name="wUsername" id="userId3">
+    <input name="wPassword" id="password3" type="password">
+    <input type="submit" value="提交">
+    <a href="${theContext}/User/sign_in">注册</a>
+</form>
+<a href="${theContext}/">首页</a>
 </body>
 </html>
